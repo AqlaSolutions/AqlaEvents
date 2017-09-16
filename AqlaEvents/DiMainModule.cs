@@ -14,11 +14,12 @@ namespace AqlaEvents
         {
             base.Load(builder);
 
-            builder.RegisterType<EventDescriptionParser>().AsSelf().AsImplementedInterfaces();
-            builder.RegisterType<MinMaxPriceExtractor>().AsSelf().AsImplementedInterfaces();
-            builder.RegisterType<FacebookEventRetriever>().AsSelf().AsImplementedInterfaces();
-            builder.RegisterType<FacebookEventParser>().AsSelf().AsImplementedInterfaces();
-            builder.RegisterType<CityEventFromFacebookImporter>().AsSelf().AsImplementedInterfaces();
+            builder.RegisterType<CsvStorage>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<EventDescriptionParser>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<MinMaxPriceExtractor>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<FacebookEventRetriever>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<FacebookEventParser>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<CityEventFromFacebookImporter>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterInstance(new FacebookClient(Settings.Default.FacebookAccessToken)).AsSelf().AsImplementedInterfaces();
         }
     }

@@ -16,13 +16,11 @@ namespace AqlaEvents
             _conf.AutoMap<CityEvent>();
             _conf.IsHeaderCaseSensitive = false;
             _conf.Delimiter = ";";
+            _conf.HasHeaderRecord = true;
         }
 
         public IList<CityEvent> ReadAll(StreamReader stream)
         {
-            var start = stream.BaseStream.Position;
-            if (stream.ReadLine().Any(x => x != ',')) stream.BaseStream.Position = start;
-
             var list = new List<CityEvent>();
 
             var rr = new CsvHelper.CsvReader(stream, _conf);

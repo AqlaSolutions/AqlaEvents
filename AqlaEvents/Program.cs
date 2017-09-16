@@ -20,16 +20,6 @@ namespace AqlaEvents
         [STAThread]
         static void Main()
         {
-            var cb = new ContainerBuilder();
-            cb.RegisterModule<DiMainModule>();
-            var ev2 = cb.Build().Resolve<CityEventFromFacebookImporter>().Import("301552323647200");
-
-            using (var f = new StreamWriter("test.csv", false, new UTF8Encoding(true)))
-            {
-                f.BaseStream.SetLength(0);
-                var st = new CsvStorage();
-                st.WriteAll(f, new[] { ev2, ev2 });
-            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

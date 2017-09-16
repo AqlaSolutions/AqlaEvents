@@ -11,14 +11,14 @@ namespace AqlaEvents
     public class EventDescriptionParser
     {
         //                                        +     3     8   (               097          )                        123-45 -67
-        readonly Regex _phoneRegex = new Regex(@"\+{0,1}3{0,1}8{0,1}[\s]*[-(]{0,1}(?<op>0\d{2})[\s]*[-)]{0,1}[\s]*(?<n>(\d\s*-{0,1}\s*){7})($|[\s\n\w])");
+        readonly Regex _phoneRegex = new Regex(@"\+{0,1}3{0,1}8{0,1}[\s]*[-(]{0,1}(?<op>0\d{2})[\s]*[-)]{0,1}[\s]*(?<n>(\d\s*-{0,1}\s*){7})($|[\s\n\w\.,])");
 
         readonly Regex _onlyNumbers = new Regex(@"\D");
 
         public IReadOnlyList<string> ParsePhones(string description)
         {
             return _phoneRegex.Matches(description).OfType<Match>().Where(x => x.Success)
-                .Select(x => _onlyNumbers.Replace((x.Groups["op"].Value + x.Groups["n"].Value).Replace(" ", ""), "")).ToArray();
+                .Select(x => _onlyNumbers.Replace(("(" + x.Groups["op"].Value + ") " + x.Groups["n"].Value).Replace(" ", ""), "")).ToArray();
         }
 
         static Regex[] MakeCurrencyRegexes(string[] symbolBothSidesRegexes, string[] symbolSuffixRegexes)
