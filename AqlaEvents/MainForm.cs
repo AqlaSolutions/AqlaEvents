@@ -194,7 +194,7 @@ namespace AqlaEvents
                     QueryBox.SelectedIndex = 0;
                 }
                 string v = QueryBox.Text;
-                int? ind = QueryBox.Items.OfType<string>().Where(x => x == v).Select((x, i) => (int?)i).FirstOrDefault();
+                int? ind = QueryBox.Items.OfType<string>().Select((x, i) => new { x, i }).Where(x => x.x == v).Select(x => (int?)x.i).FirstOrDefault();
                 if (ind != null)
                 {
                     if (next)
