@@ -27,11 +27,11 @@ namespace AqlaEvents
         {
             var cityEvent = _facebookEventFormat.ParseBaseEventInfo(fbEvent);
 
-            cityEvent.Phones = string.Join(", ", _descriptionParser.ParsePhones(fbEvent.description));
+            cityEvent.Phones = string.Join(", ", _descriptionParser.ParsePhones(fbEvent.description ?? ""));
             int? priceMin;
             int? priceMax;
             string currency;
-            _minMaxPriceExtractor.GetMinMaxPrice(_descriptionParser.ParseMoney(fbEvent.description).ToArray(), out priceMin, out priceMax, out currency);
+            _minMaxPriceExtractor.GetMinMaxPrice(_descriptionParser.ParseMoney(fbEvent.description ?? "").ToArray(), out priceMin, out priceMax, out currency);
             cityEvent.MaxPrice = priceMax;
             cityEvent.MinPrice = priceMin;
             cityEvent.Currency = currency;

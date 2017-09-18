@@ -33,12 +33,12 @@ namespace AqlaEvents
 
             return new CityEvent()
             {
-                Description = fbEvent.description,
+                Description = fbEvent.description ?? "",
                 Start = DateTime.SpecifyKind(fbEvent.start_time, DateTimeKind.Utc).ToLocalTime(),
                 End = DateTime.SpecifyKind(fbEvent.end_time, DateTimeKind.Utc).ToLocalTime(),
                 DurationHours = (int)(fbEvent.end_time - fbEvent.start_time).TotalHours,
                 Location = location,
-                Name = fbEvent.name,
+                Name = fbEvent.name ?? "",
                 Uri = MakeEventUri(fbEvent.id),
                 HostedBy = fbEvent.owner != null ? (MakeEventOwnerUri(fbEvent.owner.id) + " - " + fbEvent.owner.name) : ""
             };

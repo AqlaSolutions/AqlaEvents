@@ -118,10 +118,17 @@ namespace AqlaEvents
                     }
                     ev.Description = ev.Description.Replace("\r", "").Replace(@"\", @"\\").Replace("\n", @"\n");
                     _events.Add(ev);
-                    dynamic r = _fb.Post(id + "/maybe", new { });
-                    if (r.success != true)
-                        MessageBox.Show("Can't set rsvp: " + r, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    
+                    try
+                    {
+                        dynamic r = _fb.Post(id + "/maybe", new { });
+                        if (r.success != true)
+                            throw new Exception(r.ToString());
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show("Can't set rsvp: " + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                     if (!isBatch)
                     {
                         Save();
