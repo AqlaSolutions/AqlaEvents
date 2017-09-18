@@ -56,7 +56,8 @@ namespace AqlaEvents
             catch (FileNotFoundException)
             {
             }
-            QueryBox.Items.AddRange(Settings.Default.SearchQueries.Cast<object>().ToArray());
+            if (Settings.Default.SearchQueries != null)
+                QueryBox.Items.AddRange(Settings.Default.SearchQueries.Cast<object>().ToArray());
         }
 
         string _prevClipboardValue = null;
