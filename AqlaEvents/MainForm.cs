@@ -50,7 +50,13 @@ namespace AqlaEvents
             {
                 using (var f = new StreamReader(EventsCSV))
                 {
-                    _events.AddRange(container.Resolve<CsvStorage>().ReadAll(f));
+                    _events.AddRange(
+                        container.Resolve<CsvStorage>().ReadAll(f).Select(
+                            x =>
+                            {
+                                FixDescription(x);
+                                return x;
+                            }));
                 }
             }
             catch (FileNotFoundException)
@@ -117,7 +123,7 @@ namespace AqlaEvents
                         Console.Beep();
                         return true;
                     }
-                    ev.Description = ev.Description.Replace("\r", "").Replace(@"\", @"\\").Replace("\n", @"\n");
+                    FixDescription(ev);
                     _events.Add(ev);
                     try
                     {
@@ -139,6 +145,11 @@ namespace AqlaEvents
                 }
             }
             return false;
+        }
+
+        static void FixDescription(CityEvent ev)
+        {
+            ev.Description = ev.Description.Replace("\r", "").Replace(@"\", @"\\").Replace("\n", @"\n");
         }
 
         void Save()
