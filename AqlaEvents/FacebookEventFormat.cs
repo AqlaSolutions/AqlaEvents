@@ -39,13 +39,19 @@ namespace AqlaEvents
                 DurationHours = (int)(fbEvent.end_time - fbEvent.start_time).TotalHours,
                 Location = location,
                 Name = fbEvent.name,
-                Uri = MakeEventUri(fbEvent.id)
+                Uri = MakeEventUri(fbEvent.id),
+                HostedBy = fbEvent.owner != null ? (MakeEventOwnerUri(fbEvent.owner.id) + " - " + fbEvent.owner.name) : ""
             };
         }
 
         public string MakeEventUri(string id)
         {
             return "https://www.facebook.com/events/" + id;
+        }
+
+        public string MakeEventOwnerUri(string id)
+        {
+            return "https://www.facebook.com/" + id;
         }
     }
 }

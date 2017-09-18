@@ -9,6 +9,7 @@ namespace AqlaEvents
         public DateTime start_time { get; set; }
         public string id { get; set; }
         public string name { get; set; }
+        public FacebookEventOwner owner { get; set; }
         public FacebookPlace place { get; set; }
     }
 }

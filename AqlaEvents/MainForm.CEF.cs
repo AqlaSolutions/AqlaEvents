@@ -253,6 +253,7 @@ namespace AqlaEvents
                 return;
             }
 
+            e.SuppressKeyPress = true;
             LoadUrl(urlTextBox.Text);
         }
 

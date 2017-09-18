@@ -17,6 +17,7 @@ namespace AqlaEvents
         public int? MaxPrice { get; set; }
         public string Currency { get; set; }
         public string Uri { get; set; }
+        public string HostedBy { get; set; }
         public string Location { get; set; }
         public string Phones { get; set; }
         public string Description { get; set; }
