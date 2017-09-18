@@ -34,5 +34,17 @@ namespace AqlaEvents {
                 this["FacebookAccessToken"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1469104693369891")]
+        public string AppId {
+            get {
+                return ((string)(this["AppId"]));
+            }
+            set {
+                this["AppId"] = value;
+            }
+        }
     }
 }

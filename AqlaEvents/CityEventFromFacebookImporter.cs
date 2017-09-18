@@ -6,13 +6,13 @@ namespace AqlaEvents
     {
         readonly MinMaxPriceExtractor _minMaxPriceExtractor;
         readonly FacebookEventRetriever _facebookEventRetriever;
-        readonly FacebookEventParser _facebookEventParser;
+        readonly FacebookEventFormat _facebookEventFormat;
         readonly EventDescriptionParser _descriptionParser;
 
-        public CityEventFromFacebookImporter(EventDescriptionParser descriptionParser, FacebookEventParser facebookEventParser, FacebookEventRetriever facebookEventRetriever, MinMaxPriceExtractor minMaxPriceExtractor)
+        public CityEventFromFacebookImporter(EventDescriptionParser descriptionParser, FacebookEventFormat facebookEventFormat, FacebookEventRetriever facebookEventRetriever, MinMaxPriceExtractor minMaxPriceExtractor)
         {
             _descriptionParser = descriptionParser;
-            _facebookEventParser = facebookEventParser;
+            _facebookEventFormat = facebookEventFormat;
             _facebookEventRetriever = facebookEventRetriever;
             _minMaxPriceExtractor = minMaxPriceExtractor;
         }
@@ -20,7 +20,12 @@ namespace AqlaEvents
         public CityEvent Import(string id)
         {
             var fbEvent = _facebookEventRetriever.GetEvent(id);
-            var cityEvent = _facebookEventParser.ParseBaseEventInfo(fbEvent);
+            return Import(fbEvent);
+        }
+
+        public CityEvent Import(FacebookEvent fbEvent)
+        {
+            var cityEvent = _facebookEventFormat.ParseBaseEventInfo(fbEvent);
 
             cityEvent.Phones = string.Join(", ", _descriptionParser.ParsePhones(fbEvent.description));
             int? priceMin;

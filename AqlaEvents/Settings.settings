@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AqlaEvents" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FacebookAccessToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1469104693369891|b6D05Se9_QULx4VvdtCQbn02AgA</Value>
+    </Setting>
+    <Setting Name="AppId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1469104693369891</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

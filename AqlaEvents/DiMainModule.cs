@@ -18,7 +18,7 @@ namespace AqlaEvents
             builder.RegisterType<EventDescriptionParser>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<MinMaxPriceExtractor>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<FacebookEventRetriever>().AsSelf().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<FacebookEventParser>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<FacebookEventFormat>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<CityEventFromFacebookImporter>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterInstance(new FacebookClient(Settings.Default.FacebookAccessToken)).AsSelf().AsImplementedInterfaces();
         }

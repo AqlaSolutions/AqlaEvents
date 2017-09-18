@@ -89,8 +89,9 @@
     <Compile Include="DiMainModule.cs" />
     <Compile Include="EventDescriptionParser.cs" />
     <Compile Include="FacebookEvent.cs" />
-    <Compile Include="FacebookEventParser.cs" />
+    <Compile Include="FacebookEventFormat.cs" />
     <Compile Include="FacebookEventRetriever.cs" />
+    <Compile Include="FacebookEventsList.cs" />
     <Compile Include="FacebookPlace.cs" />
     <Compile Include="FacebookPlaceLocation.cs" />
     <Compile Include="MainForm.cs">
